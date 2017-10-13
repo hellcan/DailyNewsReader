@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gank_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="true"
+    app:contentPadding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_gank_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="2dp"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/tv_gank_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="date"
+                android:textSize="12sp"
+                android:textColor="@color/trangery" />
+
+            <TextView
+                android:id="@+id/tv_gank_who"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="who"
+                android:textSize="12sp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/trangery" />
+
+
+
+
+        </LinearLayout>
+
+
+
+
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_android_image"-->
+            <!--android:layout_width="75dp"-->
+            <!--android:layout_height="75dp"-->
+            <!--android:layout_marginLeft="2dp"-->
+            <!--android:layout_gravity="center_vertical" />-->
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

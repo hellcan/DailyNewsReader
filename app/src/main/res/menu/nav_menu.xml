@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_zhihu"
+            android:icon="@color/colorAccent"
+            android:title="知乎日报" />
+        <item
+            android:id="@+id/menu_ganhuo"
+            android:icon="@color/colorAccent"
+            android:title="干货集中营" />
+    </group>
+
+    <item
+        android:checkableBehavior="none"
+        android:title="其他">
+        <menu>
+            <item
+                android:id="@+id/menu_about"
+                android:icon="@color/colorAccent"
+                android:title="有关" />
+            <item
+                android:id="@+id/menu_exit"
+                android:icon="@color/colorAccent"
+                android:title="退出" />
+        </menu>
+    </item>
+
+</menu>
