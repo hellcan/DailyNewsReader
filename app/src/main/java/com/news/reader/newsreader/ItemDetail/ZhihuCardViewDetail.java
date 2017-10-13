@@ -1,10 +1,13 @@
 package com.news.reader.newsreader.ItemDetail;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +23,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class ZhihuCardViewDetail extends AppCompatActivity {
-    String newsId;
+    private String newsId;
+    private ProgressDialog pd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,27 @@ public class ZhihuCardViewDetail extends AppCompatActivity {
                                 String html = head + news.getBody().replace(img," ");
                                 //set webView content with html code
                                 wv_content.loadDataWithBaseURL(null,html,"text/html","utf-8",null);
+
+                                wv_content.setWebViewClient(new WebViewClient(){
+                                    @Override
+                                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                                        view.loadUrl(url);
+                                        return true;
+                                    }
+
+                                    @Override
+                                    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                                        pd = ProgressDialog.show(ZhihuCardViewDetail.this,null,"Loading");
+                                    }
+
+                                    @Override
+                                    public void onPageFinished(WebView view, String url) {
+                                        super.onPageFinished(view, url);
+                                        if(pd.isShowing()){
+                                            pd.dismiss();
+                                        }
+                                    }
+                                });
 
                             }
                         }

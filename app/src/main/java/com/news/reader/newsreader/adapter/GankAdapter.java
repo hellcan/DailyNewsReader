@@ -10,12 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.news.reader.newsreader.ItemDetail.AndroidCardViewDetail;
+import com.news.reader.newsreader.ItemDetail.GankCardViewDetail;
 import com.news.reader.newsreader.R;
 import com.news.reader.newsreader.bean.GankResultItem;
 import com.news.reader.newsreader.utils.DateUtils;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,9 +55,10 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankViewHolder
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,AndroidCardViewDetail.class);
+                Intent intent = new Intent(context,GankCardViewDetail.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("_url", gankResultItemList.get(position).getUrl());
+                bundle.putString("_type",gankResultItemList.get(0).getType());
                 intent.putExtras(bundle);
                 context.startActivity(intent);
 

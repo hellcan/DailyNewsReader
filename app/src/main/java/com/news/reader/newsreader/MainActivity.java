@@ -1,5 +1,6 @@
 package com.news.reader.newsreader;
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -8,15 +9,18 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.news.reader.newsreader.Fragment.AboutFragment;
 import com.news.reader.newsreader.Fragment.GankFragment;
 import com.news.reader.newsreader.Fragment.ZhihuFragment;
+import com.news.reader.newsreader.utils.StateUtils;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
@@ -24,32 +28,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView nav;
     private TabLayout tabLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        //set up toolbar
-        setToolBar();
-        findView();
+        if (!StateUtils.isNetworkAvailable(getApplicationContext())){
+            new AlertDialog.Builder(this)
+                    .setTitle("Network Unavailable")
+                    .setMessage("Please Fix Your Network First").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            }).show();
+        }else{
+            setContentView(R.layout.activity_main);
 
-        //set up drawer
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,
-                drawer,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
+            //set up toolbar
+            setToolBar();
+            findView();
 
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+            //set up drawer
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this,
+                    drawer,
+                    toolbar,
+                    R.string.navigation_drawer_open,
+                    R.string.navigation_drawer_close);
 
-        //set up nav
-        nav.setNavigationItemSelectedListener(this);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
 
-        displaySelectedScreen(R.id.menu_zhihu);
-        nav.setCheckedItem(R.id.menu_zhihu);
+            //set up nav
+            nav.setNavigationItemSelectedListener(this);
+
+            displaySelectedScreen(R.id.menu_zhihu);
+            nav.setCheckedItem(R.id.menu_zhihu);
+        }
+
     }
+
 
     private void findView() {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

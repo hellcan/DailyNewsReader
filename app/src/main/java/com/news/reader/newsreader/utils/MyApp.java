@@ -1,4 +1,4 @@
-package com.news.reader.newsreader;
+package com.news.reader.newsreader.utils;
 
 import android.app.Application;
 import android.content.Context;

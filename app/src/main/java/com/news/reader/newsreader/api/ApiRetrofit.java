@@ -1,7 +1,7 @@
 package com.news.reader.newsreader.api;
 
 
-import com.news.reader.newsreader.MyApp;
+import com.news.reader.newsreader.utils.MyApp;
 import com.news.reader.newsreader.utils.StateUtils;
 
 import java.io.File;
